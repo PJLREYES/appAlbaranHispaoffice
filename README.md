@@ -19,6 +19,7 @@ No instala programas ni necesita permisos de administrador. Para quitarlo: `Desi
 
 | Versión | Cambios |
 |---|---|
+| PJLR Ver.2026.10 | Si en una línea NUEVO se escribe el código de un artículo que ya existe en ClasGes, la línea pasa a ese artículo y la equivalencia se guarda al momento. |
 | PJLR Ver.2026.09 | Lectura con IA (API de Claude): clave en Ajustes, modelo a elegir, modo «solo escaneados» o «siempre»; lee cualquier proveedor, cargos CRC y portes; botón «Leer/Releer con IA». |
 | PJLR Ver.2026.08 | Logo de Hispaoffice (cabecera, pantalla de conexión, favicon). Publicada en Netlify y GitHub. Instalador de acceso directo. |
 | PJLR Ver.2026.07 | Adaptada a ClasGes 7 (`C:\Clasges7`): campo PAGO5 en albaranes, aviso si se conecta a la carpeta antigua de ClasGes 6. |
