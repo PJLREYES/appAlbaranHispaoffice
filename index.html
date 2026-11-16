@@ -37,6 +37,12 @@ a{color:var(--amber)}
 .wrap{max-width:none;margin:0;padding:0 24px 50px}
 header.top{display:flex;align-items:center;gap:18px;padding:18px 0 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
+.apiLed{display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 9px;border-radius:999px;border:1px solid var(--line2);background:var(--surface);font:600 12px var(--body);color:var(--muted);cursor:pointer;white-space:nowrap;user-select:none}
+.apiLed i{width:10px;height:10px;border-radius:50%;background:var(--faint);flex:none}
+.apiLed.ok{color:var(--ok);border-color:rgba(124,192,138,.45)} .apiLed.ok i{background:var(--ok);box-shadow:0 0 0 3px var(--ok-soft),0 0 9px var(--ok);animation:apiPulso 2.4s ease-in-out infinite}
+.apiLed.chk i{background:var(--amber);animation:apiPulso 1s ease-in-out infinite}
+.apiLed.bad{color:var(--bad);border-color:rgba(228,112,94,.45)} .apiLed.bad i{background:var(--bad)}
+@keyframes apiPulso{50%{opacity:.45}}
 .logo{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 24px rgba(240,178,58,.25);overflow:hidden;flex:none}
 .logo img{width:100%;height:100%;display:block}
 .logoFull{display:block;margin:0 auto 16px;max-width:300px;width:80%;height:auto;background:#fff;border-radius:12px;padding:10px 16px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
@@ -276,9 +282,10 @@ mark.ay{background:var(--amber-soft);color:var(--amber);border-radius:3px;paddin
 <body>
 <div class="wrap">
   <header class="top">
+    <div class="apiLed" id="apiLed" title="Conexión con la API de Claude"><i></i><span>Sin API</span></div>
     <div class="brand">
       <div class="logo" title="Hispaoffice"><img src="data:image/png;base64,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" alt="Hispaoffice"></div>
-      <div><h1>Albaranes <span>→</span> ClasGes<span class="ver">PJLR Ver.2026.10</span></h1><small>Importador de albaranes de proveedor · Hispaoffice</small></div>
+      <div><h1>Albaranes <span>→</span> ClasGes<span class="ver">PJLR Ver.2026.11</span></h1><small>Importador de albaranes de proveedor · Hispaoffice</small></div>
     </div>
     <div class="chips" id="chips"></div>
     <button class="helpbtn" id="btnAyuda" title="Ayuda (F1)" aria-label="Ayuda">?</button>
@@ -1918,12 +1925,14 @@ Reglas:
     return new Uint8Array(await blob.arrayBuffer());
   }
   async function llamar(clave, body) {
-    const r = await fetch(URL_API, {
+    let r;
+    try { r = await fetch(URL_API, {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': clave, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
       body: JSON.stringify(body),
-    });
+    }); } catch (e) { if (typeof apiEstado === 'function') apiEstado('bad', 'Sin conexión con la API'); throw new Error('No se puede conectar con la API de Claude (¿sin Internet?).'); }
     const j = await r.json().catch(() => ({}));
+    if (typeof apiEstado === 'function') { if (r.ok) apiEstado('ok'); else if (r.status === 401 || r.status === 403) apiEstado('bad', 'Clave API no válida'); }
     if (!r.ok) {
       const m = (j.error && j.error.message) || r.statusText;
       const e = new Error(r.status === 401 ? 'La clave API no es válida.' : r.status === 429 ? 'Límite de uso de la API alcanzado; prueba en un minuto.' : r.status === 529 || r.status >= 500 ? 'El servicio de Claude está saturado o no responde; prueba en un momento.' : /credit balance/i.test(m) ? 'La cuenta de la API no tiene saldo (Plans & Billing en console.anthropic.com).' : `Error ${r.status}: ${m}`);
@@ -2033,7 +2042,16 @@ Reglas:
     if (j.observaciones && String(j.observaciones).trim()) avisos.push('Observación de la IA: ' + String(j.observaciones).trim());
     return out;
   }
-  return { MODELOS, SCHEMA, leer, probar, aAlbaran };
+  /** Comprueba la clave sin coste (lista de modelos); si falla por otra causa, prueba con una llamada mínima */
+  async function ping(clave) {
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/models?limit=1', { headers: { 'x-api-key': clave, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' } });
+      if (r.ok) return true;
+      if (r.status === 401 || r.status === 403) { const e = new Error('Clave API no válida'); e.status = r.status; throw e; }
+    } catch (e) { if (e.status) throw e; }
+    await probar(clave, S.cfg.iaModelo || MODELOS[0].id); return true;
+  }
+  return { MODELOS, SCHEMA, leer, probar, ping, aAlbaran };
 })();
 /** Formato genérico para proveedores sin lector propio leídos con IA */
 const FMT_IA = { id: 'ia', nombre: 'Lectura con IA', detecta: /(?!)/, enClasGes: null, cif: '', prefijo: 'prefijo', necesitaTextoPDF: false };
@@ -2058,6 +2076,24 @@ function progresoDoc(texto, pct) {
   const t = $('#cargaTxt'), b = $('#cargaBar');
   if (t) t.textContent = texto;
   if (b) { b.parentElement.classList.toggle('hidden', pct == null); b.style.width = (pct || 0) + '%'; }
+}
+/* Indicador de conexión con la API (arriba a la izquierda) */
+function apiEstado(est, det) {
+  const el = document.getElementById('apiLed'); if (!el) return;
+  if (!S.apiKey && est !== 'chk') est = 'off';
+  const txt = { ok: 'API conectada', chk: 'Comprobando API…', bad: 'API sin conexión', off: 'Sin API' }[est];
+  el.className = 'apiLed' + (est === 'off' ? '' : ' ' + est);
+  el.querySelector('span').textContent = txt;
+  el.title = (det ? det + ' · ' : '') + (est === 'off' ? 'No hay clave API guardada (Ajustes › Lectura con IA)' : 'Pulsa para volver a comprobar la conexión con la API de Claude') + (est === 'ok' ? ' · Última comprobación: ' + new Date().toLocaleTimeString('es-ES') : '');
+}
+let _apiChk = null;
+async function comprobarAPI() {
+  if (!S.apiKey) { apiEstado('off'); return; }
+  if (!navigator.onLine) { apiEstado('bad', 'Sin conexión a Internet'); return; }
+  if (_apiChk) return _apiChk;
+  apiEstado('chk');
+  _apiChk = IA.ping(S.apiKey).then(() => apiEstado('ok'), e => apiEstado('bad', e.message)).finally(() => { _apiChk = null; });
+  return _apiChk;
 }
 const iaActiva = () => !!S.apiKey && S.cfg.iaModo !== 'no';
 /** Lee el albarán con Claude y lo abre; lanza error si falla */
@@ -2940,15 +2976,15 @@ function renderAjustes() {
     const v = $('#iaClave').value.trim();
     if (!/^sk-ant-[\w-]{20,}$/.test(v)) { aviso('bad', 'Eso no parece una clave de la API de Claude (empieza por <span class="mono">sk-ant-</span>).'); return; }
     $('#iaEstado').innerHTML = '<span class="spin"></span> Comprobando la clave…';
-    try { const m = await IA.probar(v, S.cfg.iaModelo); S.apiKey = v; await IDB.set('apiKey', v); aviso('ok', `Clave guardada y comprobada (${esc(m)}).`); renderAjustes(); }
+    try { const m = await IA.probar(v, S.cfg.iaModelo); S.apiKey = v; await IDB.set('apiKey', v); apiEstado('ok'); aviso('ok', `Clave guardada y comprobada (${esc(m)}).`); renderAjustes(); }
     catch (e) { $('#iaEstado').textContent = ''; aviso('bad', 'No se ha guardado: ' + esc(e.message)); }
   };
   if ($('#iaProbar')) $('#iaProbar').onclick = async () => {
     $('#iaEstado').innerHTML = '<span class="spin"></span> Probando…';
     try { const m = await IA.probar(S.apiKey, S.cfg.iaModelo); $('#iaEstado').innerHTML = `<span style="color:var(--ok)">✓ Conexión correcta con ${esc(m)}.</span>`; }
-    catch (e) { $('#iaEstado').innerHTML = `<span style="color:var(--bad)">✕ ${esc(e.message)}</span>`; }
+    catch (e) { $('#iaEstado').innerHTML = `<span style="color:var(--bad)">✕ ${esc(e.message)}</span>`; apiEstado('bad', e.message); }
   };
-  if ($('#iaBorrar')) $('#iaBorrar').onclick = async () => { S.apiKey = ''; await IDB.set('apiKey', ''); aviso('ok', 'Clave API eliminada de este navegador.'); renderAjustes(); };
+  if ($('#iaBorrar')) $('#iaBorrar').onclick = async () => { S.apiKey = ''; await IDB.set('apiKey', ''); apiEstado('off'); aviso('ok', 'Clave API eliminada de este navegador.'); renderAjustes(); };
   const pf = S.cfg.provFormato || {};
   $('#setProv').innerHTML = FORMATOS.map(f => {
     const p = pf[f.id] && S.ctx ? S.ctx.prov.find(x => x.CLAPRO === pf[f.id]) : null;
@@ -3005,6 +3041,11 @@ function mostrarTab(t) {
 
   S.cfg = { ...CFG_DEF, ...(await IDB.get('cfg') || {}) };
   S.apiKey = (await IDB.get('apiKey')) || '';
+  $('#apiLed').onclick = () => comprobarAPI();
+  window.addEventListener('online', () => comprobarAPI());
+  window.addEventListener('offline', () => apiEstado('bad', 'Sin conexión a Internet'));
+  setInterval(() => { if (S.apiKey && !document.hidden) comprobarAPI(); }, 5 * 60 * 1000);
+  comprobarAPI();
   if (!S.cfg.provFormato || typeof S.cfg.provFormato !== 'object') S.cfg.provFormato = {};
   S.equiv = (await IDB.get('equiv')) || {};
   S.hist = (await IDB.get('hist')) || [];
